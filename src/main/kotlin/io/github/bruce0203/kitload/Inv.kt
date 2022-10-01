@@ -14,6 +14,7 @@ fun Plugin.getKitList(): MutableSet<String> {
     return config.getKeys(false)
 }
 
+@Suppress("unused")
 fun Plugin.hasKit(name: String): Boolean {
     return config.isSet(name)
 }
@@ -22,6 +23,7 @@ fun Plugin.saveKit(name: String, inventory: Inventory) {
     inventory.contents.forEachIndexed { index, item ->
         config.set("$name.$index", item)
     }
+    saveConfig()
 }
 
 fun getInventory(conf: ConfigurationSection): Inventory {
