@@ -1,0 +1,10 @@
+name: kitload
+version: Build 1
+main: io.github.bruce0203.kitload.Plugin
+libraries:
+  - org.jetbrains.kotlin:kotlin-stdlib:1.7.20
+  - org.jetbrains.kotlin:kotlin-reflect:1.7.20
+  - org.jetbrains.kotlin:kotlin-test:1.7.20
+commands:
+  kitload:
+  kitsave:

@@ -1,6 +1,6 @@
 import org.jetbrains.kotlin.util.capitalizeDecapitalize.toLowerCaseAsciiOnly
 
-val kotlin_version = "1.7.0"
+val kotlin_version = "1.7.20"
 buildscript {
     repositories {
         gradlePluginPortal()
@@ -11,7 +11,7 @@ buildscript {
 }
 plugins {
 
-    kotlin("jvm") version "1.7.0"
+    kotlin("jvm") version "1.7.20"
     id("org.jetbrains.dokka") version "1.4.32"
     id("maven-publish")
     application
@@ -38,13 +38,23 @@ application {
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://repo.dmulloy2.net/repository/public/") }
+    maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
+    maven { url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/") }
+    maven { url = uri("https://hub.spigotmc.org/nexus/content/repositories/public/") }
+    maven { url = uri("https://jitpack.io") }
+    maven { url = uri("https://libraries.minecraft.net/") }
+    maven { url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/") }
+
 }
 
 dependencies {
     api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    api("org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}")
-    api("org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}")
-    api("org.jetbrains.kotlin:kotlin-test:${kotlin_version}")
+    compileOnly("org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}")
+    compileOnly("org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}")
+    compileOnly("org.jetbrains.kotlin:kotlin-test:${kotlin_version}")
+    implementation("io.github.brucefreedy:mccommand:1.0.1")
+    compileOnly("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
 }
 
 lateinit var sourcesArtifact: PublishArtifact
