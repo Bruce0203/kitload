@@ -8,4 +8,11 @@ libraries:
   - org.jetbrains.kotlin:kotlin-test:1.7.20
 commands:
   kitload:
+    permission: kitload
   kitsave:
+    permission: kitsave
+permissions:
+  kitload:
+    default: op
+  kitsave:
+    default: op
