@@ -17,7 +17,7 @@ plugins {
     application
 }
 
-project.version = System.getenv("GITHUB_BUILD_NUMBER")?: project.version.toString()
+rootProject.version = System.getenv("GITHUB_BUILD_NUMBER")?: rootProject.version.toString()
 
 apply(plugin = "kotlin")
 apply(plugin = "com.github.johnrengelman.shadow")
@@ -106,7 +106,7 @@ allprojects {
                 val githubUserName = repo.substring(0, repo.indexOf("/"))
                 groupId = "io.github.${githubUserName.toLowerCaseAsciiOnly()}"
                 artifactId = project.name
-                version = project.version.toString()
+                version = rootProject.version.toString()
                 artifact(sourcesArtifact)
                 artifact(javadocArtifact)
             }
@@ -119,7 +119,7 @@ allprojects {
             repeat(2) {
                 filesMatching("**/*.yml") {
                     expand(HashMap(rootProject.properties)
-                        .apply { put("version", project.version)})
+                        .apply { put("version", rootProject.version)})
                 }
             }
         }
