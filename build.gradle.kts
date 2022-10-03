@@ -24,6 +24,9 @@ apply(plugin = "com.github.johnrengelman.shadow")
 tasks.withType<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar> {
     archiveFileName.set("${rootProject.name}.jar")
 }
+tasks.withType<Jar> {
+    archiveFileName.set("${rootProject.name}.jar")
+}
 
 val projectMainClass = "AppKt"
 tasks.withType<Jar> {
