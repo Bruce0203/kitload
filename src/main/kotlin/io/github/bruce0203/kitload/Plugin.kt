@@ -13,8 +13,7 @@ class Plugin : JavaPlugin() {
 
     private val kitFile = File(dataFolder, "kits.yml").apply { if (!exists()) createNewFile() }
     var kitConf = YamlConfiguration.loadConfiguration(kitFile)
-    val permissionMessage
-    get() = config.getString("permission-message")
+    val permissionMessage get() = config.getString("permission-message")
         .run { ChatColor.translateAlternateColorCodes('&', this
             ?: throw AssertionError("config permission-message not exists!")) }
     fun saveKit() {
