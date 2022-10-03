@@ -17,7 +17,7 @@ plugins {
     application
 }
 
-version = System.getenv("GITHUB_BUILD_NUMBER")?: project.version.toString()
+project.version = System.getenv("GITHUB_BUILD_NUMBER")?: project.version.toString()
 
 apply(plugin = "kotlin")
 apply(plugin = "com.github.johnrengelman.shadow")
