@@ -5,25 +5,31 @@ import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.Inventory
 
+
 fun Plugin.getKit(name: String): Inventory {
-    return getInventory(config.getConfigurationSection(name)
+    return getInventory(kitConf.getConfigurationSection(name)
         ?: throw AssertionError("inventory not exist"))
 }
 
 fun Plugin.getKitList(): MutableSet<String> {
-    return config.getKeys(false)
+    return kitConf.getKeys(false)
 }
 
 @Suppress("unused")
 fun Plugin.hasKit(name: String): Boolean {
-    return config.isSet(name)
+    return kitConf.isSet(name)
+}
+
+fun Plugin.deleteKit(name: String) {
+    kitConf.set(name, null)
+    saveKit()
 }
 
 fun Plugin.saveKit(name: String, inventory: Inventory) {
     inventory.contents.forEachIndexed { index, item ->
-        config.set("$name.$index", item)
+        kitConf.set("$name.$index", item)
     }
-    saveConfig()
+    saveKit()
 }
 
 fun getInventory(conf: ConfigurationSection): Inventory {

@@ -11,8 +11,16 @@ commands:
     permission: kitload
   kitsave:
     permission: kitsave
+  kitremove:
+    permission: kitremove
+  kitreload:
+    permisison: kitreload
 permissions:
   kitload:
     default: op
   kitsave:
+    default: op
+  kitremove:
+    default: op
+  kitreload:
     default: op
