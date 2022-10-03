@@ -114,5 +114,18 @@ allprojects {
 
     }
 
+    tasks {
+        processResources {
+            repeat(2) {
+                filesMatching("**/*.yml") {
+                    expand(HashMap(rootProject.properties)
+                        .apply { put("version", project.version)})
+                }
+            }
+        }
+    }
+
 
 }
+
+
