@@ -74,7 +74,7 @@ class Plugin : JavaPlugin() {
             "op" -> player.isOp
             "not op" -> !player.isOp
             else -> false
-        }.apply { if (this && sendPermissionMessage) player.sendMessage(permissionMessage) }
+        }.apply { if (!this && sendPermissionMessage) player.sendMessage(permissionMessage) }
     }
 
     private fun loadDefaultConfig() {
