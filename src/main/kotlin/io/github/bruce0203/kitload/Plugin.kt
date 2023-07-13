@@ -63,6 +63,7 @@ class Plugin : JavaPlugin() {
                 if (!hasPermission(kitReload, player)) return@executeCommand
                 kitConf = YamlConfiguration.loadConfiguration(kitFile)
                 reloadConfig()
+                player.sendMessage("Kit reloaded!")
             }
         }
     }
