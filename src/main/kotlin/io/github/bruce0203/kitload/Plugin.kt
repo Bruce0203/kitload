@@ -11,7 +11,10 @@ import java.io.File
 
 class Plugin : JavaPlugin() {
 
-    private val kitFile = File(dataFolder, "kits.yml").apply { if (!exists()) createNewFile() }
+    private val kitFile = File(dataFolder, "kits.yml").apply { if (!exists()) {
+        parentFile.mkdirs()
+        createNewFile()
+    } }
     var kitConf = YamlConfiguration.loadConfiguration(kitFile)
     val permissionMessage get() = config.getString("permission-message")
         .run { ChatColor.translateAlternateColorCodes('&', this
