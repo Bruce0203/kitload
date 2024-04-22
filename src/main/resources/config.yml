@@ -5,4 +5,5 @@ command-permissions:
   kitload: op
   kitsave: op
   kitremove: op
+  kitreload: op
 permission-message: "&cYou don't have permission to use this command."

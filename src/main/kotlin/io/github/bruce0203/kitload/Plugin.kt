@@ -16,7 +16,7 @@ class Plugin : JavaPlugin() {
         createNewFile()
     } }
     var kitConf = YamlConfiguration.loadConfiguration(kitFile)
-    val permissionMessage get() = config.getString("permission-message")
+    private val permissionMessage get() = config.getString("permission-message")
         .run { ChatColor.translateAlternateColorCodes('&', this
             ?: throw AssertionError("config permission-message not exists!")) }
     fun saveKit() {
@@ -33,7 +33,7 @@ class Plugin : JavaPlugin() {
             command(kitLoad) {
                 tab { getKitList() }
                 execute {
-                    if (!hasPermission(kitReload, player)) return@execute
+                    if (!hasPermission(kitLoad, player)) return@execute
                     try {
                         val name = args[0]
                         player.inventory.contents = getKit(name).contents
@@ -45,7 +45,7 @@ class Plugin : JavaPlugin() {
             }
             command(kitSave) {
                 execute {
-                    if (!hasPermission(kitReload, player)) return@execute
+                    if (!hasPermission(kitSave, player)) return@execute
                     val name = args[0]
                     saveKit(name, player.inventory)
                     player.sendMessage("Kit $name saved!")
@@ -54,7 +54,7 @@ class Plugin : JavaPlugin() {
             command(kitRemove) {
                 tab { getKitList() }
                 execute {
-                    if (!hasPermission(kitReload, player)) return@execute
+                    if (!hasPermission(kitRemove, player)) return@execute
                     deleteKit(args[0])
                     player.sendMessage("Kit $name removed!")
                 }
@@ -68,7 +68,7 @@ class Plugin : JavaPlugin() {
         }
     }
 
-    fun hasPermission(perm: String, player: Player, sendPermissionMessage: Boolean = true): Boolean {
+    private fun hasPermission(perm: String, player: Player, sendPermissionMessage: Boolean = true): Boolean {
         return when (config.getString("command-permissions.$perm")) {
             "true" -> true
             "op" -> player.isOp
