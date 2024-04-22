@@ -2,6 +2,7 @@ package io.github.bruce0203.kitload
 
 import org.bukkit.Bukkit
 import org.bukkit.configuration.ConfigurationSection
+import org.bukkit.configuration.MemoryConfiguration
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.Inventory
 
@@ -26,6 +27,7 @@ fun Plugin.deleteKit(name: String) {
 }
 
 fun Plugin.saveKit(name: String, inventory: Inventory) {
+    kitConf.createSection(name)
     inventory.contents.forEachIndexed { index, item ->
         kitConf.set("$name.$index", item)
     }
