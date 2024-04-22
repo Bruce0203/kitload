@@ -38,7 +38,7 @@ class Plugin : JavaPlugin() {
                         val name = args[0]
                         player.inventory.contents = getKit(name).contents
                         player.sendMessage("Kit $name loaded!")
-                    } catch (e: Exception) {
+                    } catch (e: Throwable) {
                         player.sendMessage("$RED${e.message}")
                     }
                 }
